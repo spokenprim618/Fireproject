@@ -18,6 +18,7 @@ function updateDB(event){
     UsernameInput.value = "";
     MessageInput.value  = "";
     pfpInput.value="";
+    console.log(pfp+":"+username+":"+message);
  
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -41,10 +42,11 @@ database.on("child_added", addMessagToBoard);
  
 function addMessagToBoard(rData) {
     let row = rData.val();
+    console.log(row)
     const blogMessage = document.createElement(`p`);
     const blogIMG=document.createElement('img');
-blogIMG.src=data.pfp
-    blogMessage.innerHTML= `${row.TIMESTAMP}: ${row.NAME}: ${row.MESSAGE}:${row.PFP}`;
+    blogIMG.src=database.pfp;
+    blogMessage.innerText= `${row.TIMESTAMP}: ${row.NAME}: ${row.MESSAGE}:${row.PFP}`;
     let userMain = document.querySelector('.allMessages');
     userMain.appendChild(blogMessage);
 }
